@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %} {% block content %}
+<section class="tag__list js-in-view fade-in-up">
+  <div class="blog-inner">
+    <div class="heading-bg">
+      <div class="heading">
+        <div class="heading__en">CATEGORY</div>
+        <div class="heading__image">
+          <img src="/static/img/hukidasi.png" alt="吹き出し画像" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tag__list-title inner">
+    <h3>カテゴリー一覧</h3>
+    <div class="tag__list-image">
+      <img src="/static/img/asirai-pen.png" alt="ペンの画像">
+    </div>
+  </div>
+  <ul class="tag__list-items inner">
+    {% for category in object_list %}
+    <li class="tag__list-item">
+      <a href="{% url 'app:category_post' category.slug %}"
+        >{{ category.name }} ({{ category.num_posts }})</a
+      >
+    </li>
+    {% empty %}
+    <li>カテゴリはありません。</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

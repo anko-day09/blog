@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %} {% block content %}
+<section class="blog__single inner js-in-view fade-in-up">
+  <div class="blog-inner">
+    <div class="heading">
+      <div class="heading__en">BLOG</div>
+      <div class="heading__image--type2 js-in-view fade-in-up">
+        <img src="/static/img/ashirai.png" alt="本棚">
+      </div>
+    </div>
+  </div>
+  <div class="blog__item-head">
+    <span class="blog-category">
+      <a href="{% url 'app:category_post' object.category.slug %}">
+        {{ object.category.name }}
+      </a>
+    </span>
+    <span class="blog-date">{{ post.created_date|date:"Y年m月d日" }}</span>
+    {% for tag in object.tags.all %}
+    <span class="blog-tag"
+      ><a href="{% url 'app:tag_post' tag.slug %}"> {{ tag.name }}</a>
+    </span>
+    {% endfor %}
+  </div>
+  <div class="blog__single--title">
+    <h2>{{ object.title }}</h2>
+  </div>
+  <div class="blog__single-images">
+    {% for content_image in object.contentimage_set.all %}
+    <img src="{{ content_image.content_image.url }}" alt="{{ object.title }}" />
+    {% endfor %}
+  </div>
+  <div class="blog__single-content">{{ object.content|safe }}</div>
+</section>
+{% include "app/pagination.html" %}
+
+{% endblock %}

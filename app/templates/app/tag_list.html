@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %} {% block content %}
+<section class="tag__list js-in-view fade-in-up">
+  <div class="blog-inner">
+    <div class="heading-bg">
+      <div class="heading">
+        <div class="heading__en">TAG</div>
+        <div class="heading__image">
+          <img src="/static/img/hukidasi.png" alt="吹き出し画像" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tag__list-title inner">
+    <h3>タグ一覧</h3>
+    <div class="tag__list-image--type2">
+      <img src="/static/img/asirai-pen.png" alt="ペンの画像">
+    </div>
+  </div>
+  <ul class="tag__list-items inner">
+    {% for tag in object_list %}
+    <li class="tag__list-item">
+      <a href="{% url 'app:tag_post' tag.slug %}"
+        >{{ tag.name }} ({{ tag.num_posts }})</a
+      >
+    </li>
+    {% empty %}
+    <li>タグはありません。</li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}

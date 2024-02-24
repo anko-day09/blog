@@ -1,0 +1,76 @@
+{% extends 'app/base.html' %} {% block content %}
+<div class="mv js-in-view fade-in-up">
+  <div class="mv__inner inner">
+    <div class="mv__content">
+      <div class="mv__left">
+        <h1 class="mv__title text-progress" data-txt="WEB日記">WEB日記</h1>
+      </div>
+      <div class="mv__right">
+        <div class="mv__right-box">
+          <video
+            src="static/img/mv-movie.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            width="100%"
+            class="mv__video"
+          ></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mv___image-left js-in-view fade-in-up is-sp">
+  <img src="/static/img/asirai-woma03.png" alt="女性">
+</div>
+<section class="blog inner js-in-view fade-in-up">
+  <div class="blog-inner">
+    <div class="heading">
+      <div class="heading__en">BLOG</div>
+      <div class="heading__image">
+        <img src="static/img/hukidasi.png" alt="吹き出し画像" />
+      </div>
+    </div>
+  </div>
+  <div class="blog___image-right js-in-view fade-in-up is-sp">
+    <img src="/static/img/asirai-woman02.png" alt="女性">
+  </div>
+  <div class="blog__list">
+    <ul class="blog__items">
+      {% for post in posts %} {% if user.is_authenticated or post.is_public %}
+      <li class="blog__item">
+        {% if not post.is_public %}[下書き] {% endif %}
+        <a href="{% url 'app:post_detail' post.id %}" class="blog__item-link">
+          {% if post.image %}
+          <div class="blog__item-image">
+            <img
+              src="{{ post.image.url }}"
+              alt="{{ post.title }}"
+              width="240"
+              height="126"
+            />
+          </div>
+          {% endif %}
+          <div class="blog__item-content">
+            <div class="blog__item-head">
+              <span class="blog-category">{{ post.category.name }}</span>
+              <span class="blog-date"
+                >{{ post.created_date|date:"Y年m月d日" }}</span
+              >
+            </div>
+            <div class="blog__item-body">
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.description }}</p>
+            </div>
+          </div>
+        </a>
+      </li>
+      {% endif %} {% empty %}
+      <li>まだ投稿はありません。</li>
+      {% endfor %} {% include "app/pagination.html" %}
+    </ul>
+  </div>
+</section>
+<!-- 他のコンテンツを追加する場合はここに追加 -->
+{% endblock %}

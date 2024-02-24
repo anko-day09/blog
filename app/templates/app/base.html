@@ -1,0 +1,155 @@
+{% load static %} {% block meta %}
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@mm_riho0924" />
+    <meta property="og:url" content="https://ankodrone09.pythonanywhere.com" />
+    <meta property="og:title" content="Maple Portfolio Site" />
+    <meta
+      property="og:description"
+      content="あんこがPythonで作ったポートフォリオ"
+    />
+    <meta
+      property="og:image"
+      content="https://ankodrone09.pythonanywhere.com/static/img/twitter_card.png"
+    />
+    {% endblock %}
+    <!-- fontawesome -->
+    <link
+      href="https://use.fontawesome.com/releases/v6.5.1/css/all.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <title>ブログサイト</title>
+  </head>
+  <body>
+    <header class="header js-in-view fade-in-up">
+      <div class="header__inner inner">
+        <h1 class="header__logo">
+          <a href="/">M.py</a>
+        </h1>
+        <nav class="header__nav">
+          <a href="https://ankodrone09.pythonanywhere.com" class="header__link" data-item="HOME">作品一覧</a>
+          <a href="/" class="header__link" data-item="HOME">ブログ</a>
+          <a
+            href="https://ankodrone09.pythonanywhere.com/about"
+            class="header__link" data-item="PROFILE"
+            >わたしの正体</a
+          >
+          <div class="header__button">
+            <a
+              href="mailto:youyifeng972@gmail.com?subject=お問い合わせ&amp;body=お名前：%0D%0Aお問い合わせ詳細："
+              target="_blank"
+              class=""
+              >お問合わせ</a
+            >
+          </div>
+        </nav>
+        <!---pc-nav-->
+        <button id="js-drawer-icon" class="header__open drawer-icon">
+          <span class="drawer-icon__bar"></span>
+          <span class="drawer-icon__bar"></span>
+          <span class="drawer-icon__bar"></span>
+        </button>
+      </div>
+    </header>
+    <div id="js-drawer-content" class="drawer-content">
+      <nav class="drawer-content__menu">
+        <a href="https://ankodrone09.pythonanywhere.com" class="drawer-content__link">作品一覧</a>
+        <a href="/" class="drawer-content__link">ブログ</a>
+        <a
+          href="https://ankodrone09.pythonanywhere.com/about"
+          class="drawer-content__link"
+          >わたしの正体</a
+        >
+        <div class="drawer-content__button">
+          <a
+            href="mailto:youyifeng972@gmail.com?subject=お問い合わせ&amp;body=お名前：%0D%0Aお問い合わせ詳細："
+            target="_blank"
+            class="button"
+            >お問い合わせ</a
+          >
+        </div>
+      </nav>
+    </div>
+    <main>{% block content %} {% endblock %}</main>
+    <ul class="cp_snslink05">
+      <li class="cp_link category">
+        <a class="" href="{% url 'app:category_list' %}"
+          ><i class="fa-regular fa-bookmark"></i><span>Category</span></a
+        >
+      </li>
+      <li class="cp_link tag">
+        <a class="" href="{% url 'app:tag_list' %}"
+          ><i class="fa-solid fa-tags"></i><span>Tag</span></a
+        >
+      </li>
+      <li class="cp_link work">
+        <a class="" href="https://ankodrone09.pythonanywhere.com/"
+          ><i class="fa-brands fa-python"></i><span>Work</span></a
+        >
+      </li>
+      <li class="cp_link twitter">
+        <a class="" href="https://twitter.com/mm_riho0924"
+          ><i class="fa-brands fa-x-twitter"></i><span>X</span></a
+        >
+      </li>
+      <li class="cp_link instagram">
+        <a class="" href="https://www.instagram.com/anko_drone"
+          ><i class="fa-brands fa-instagram"></i><span>Instagram</span></a
+        >
+      </li>
+      <li class="cp_link youtube">
+        <a class="" href="https://www.youtube.com/@user-fk1gy5uo4r"
+          ><i class="fa-brands fa-youtube"></i><span>Youtube</span></a
+        >
+      </li>
+    </ul>
+    <!-- <div class="footer__information">
+      <div class="footer__sns">
+        <p class="footer__sns-text">FOLLOW ME</p>
+        <div class="footer__sns-boxes">
+
+          <a href="https://twitter.com/mm_riho0924" class="footer__sns-items" target="_blank">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+
+          <a href="https://www.instagram.com/anko_drone/" class="footer__sns-items" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a href="https://www.youtube.com/channel/UCLAS52dDCG3RhfzSVtCLOtQ" class="footer__sns-items" target="_blank">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer__contact">
+        <h3 class="footer__contact-title">M.py</h3>
+        <a
+          href="mailto:youyifeng972@gmail.com?subject=お問い合わせ&amp;body=お名前：%0D%0Aお問い合わせ詳細:"
+          target="_blank"
+          class="button footer__contact-button"
+        >
+          CONTACT
+        </a>
+      </div>
+    </div> -->
+    <footer class="footer">
+      <small class="text-white">&copy; 2024 Maple Site</small>
+    </footer>
+    <button onclick="scrollToTop()" id="js-pagetop" class="pagetop" title="Go to top">
+      <img src="/static/img/totop.png" alt="トップに戻るボタン" />
+    </button>
+    {% block extra_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    {% endblock %}
+  </body>
+</html>

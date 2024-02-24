@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %} {% block content %}
+<section class="tag__list js-in-view fade-in-up">
+  <div class="blog-inner">
+    <div class="heading-bg">
+      <div class="heading">
+        <div class="heading__en">TAG</div>
+        <div class="heading__image">
+          <img src="/static/img/hukidasi.png" alt="吹き出し画像" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tag__list-title inner">
+    <h1>「#{{ object.name }}」の投稿一覧</h1>
+  </div>
+  <ul class="tag__list-items inner">
+    {% for post in object_list %}
+      {% if user.is_authenticated or post.is_public %}
+        <li class="tag__list-item">
+          {% if not post.is_public %}[下書き] {% endif %}
+          <a href="{% url 'app:post_detail' post.id %}">
+            {% if post.image %}
+              <img src="{{ post.image.url }}" alt="{{ post.title }} thumbnail">
+            {% endif %}
+            {{ post.title }}
+          </a>
+        </li>
+      {% else %}
+        <li>投稿はありません。</li>
+      {% endif %}
+    {% empty %}
+      <li>まだ投稿はありません。</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
